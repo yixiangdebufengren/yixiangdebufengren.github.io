@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yixiangren.us.kg/sitemap.xml
