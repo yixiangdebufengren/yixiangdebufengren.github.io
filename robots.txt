@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yixiangren/sitemap.xml
+Sitemap: https://yixiangren.us.kg/sitemap.xml
