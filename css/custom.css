@@ -1,5 +1,5 @@
 .audio-card {
-  margin: 1.5em 0;
+  margin: 1.5em auto;
   padding: 14px 16px;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.04);
@@ -10,15 +10,17 @@
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .audio-player {
   width: 100%;
 }
 
-/* 桌面端轻微优化 */
+/* 桌面端居中 + 限宽 */
 @media (min-width: 768px) {
   .audio-card {
+    max-width: 420px;
     padding: 16px 18px;
   }
 }
