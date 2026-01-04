@@ -1,3 +1,7 @@
+/* ===============================
+   音乐播放器
+   =============================== */
+
 .audio-card {
   margin: 1.5em auto;
   padding: 14px 16px;
@@ -15,5 +19,57 @@
   .audio-card {
     max-width: 420px;
     padding: 16px 18px;
+  }
+}
+
+
+/* ===============================
+   全站花瓣飘落（CSS-only）
+   =============================== */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  pointer-events: none;
+  z-index: 9999;
+
+  background-image: url("/images/butterfly-icon-top.png");
+  background-repeat: repeat;
+  background-size: 60px 60px;
+
+  animation: petals-fall linear infinite;
+}
+
+body::before {
+  opacity: 0.35;
+  animation-duration: 25s;
+}
+
+body::after {
+  opacity: 0.2;
+  animation-duration: 40s;
+  background-size: 80px 80px;
+}
+
+@keyframes petals-fall {
+  0% {
+    background-position: 0 -100%;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+/* 移动端：减少密度 */
+@media (max-width: 768px) {
+  body::before,
+  body::after {
+    background-size: 90px 90px;
+    opacity: 0.18;
   }
 }
