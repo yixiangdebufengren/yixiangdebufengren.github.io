@@ -2,6 +2,9 @@
     background: transparent;
 }
 
-#footer-wrap {
+/*#footer-wrap {
+    color: #0d0d0d;
+}*/
+#footer .footer_custom_text {
     color: #0d0d0d;
 }
