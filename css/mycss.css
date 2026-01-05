@@ -2,9 +2,11 @@
     background: transparent;
 }
 
-#footer-wrap .copyright {
-    color: red !important;
+html[data-theme="light"] #footer .copyright,
+html[data-theme="light"] #footer a.footer_custom_text {
+  color: #000000 !important;
 }
-#footer-wrap .footer_custom_text {
-  color: #ff6600 !important;
+html[data-theme="dark"] #footer .copyright,
+html[data-theme="dark"] #footer a.footer_custom_text {
+  color: #ffffff !important;
 }
