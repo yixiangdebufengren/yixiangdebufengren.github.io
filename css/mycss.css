@@ -2,9 +2,9 @@
     background: transparent;
 }
 
-/*#footer-wrap {
-    color: #0d0d0d;
-}*/
-#footer .footer_custom_text {
-    color: #0d0d0d;
+#footer-wrap .copyright {
+    color: red !important;
+}
+#footer-wrap .footer_custom_text {
+  color: #ff6600 !important;
 }
