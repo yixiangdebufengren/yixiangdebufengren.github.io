@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth < 768) return;
 
-  new Sakura('body', {
+  new Sakura('html', {
     fallSpeed: 1,
     maxSize: 14,
     minSize: 10,
