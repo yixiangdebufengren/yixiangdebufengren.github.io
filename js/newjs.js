@@ -184,8 +184,8 @@ var attributes = [
             filter: 20,
             flag: false,
             percent: false,
-            hid: 120,
-            show: 80
+            hid: 60,
+            show: 60
         }
     },
     {
