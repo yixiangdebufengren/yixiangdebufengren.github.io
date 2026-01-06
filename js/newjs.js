@@ -8,7 +8,7 @@ function Sakura(x, y, s, r, fn) {
     this.s = s;
     this.r = r;
     this.fn = fn;
-    this.alpha = Math.random() * 0.5 + 0.3;
+    this.alpha = Math.random() * 0.6 + 0.3;
 }
 
 Sakura.prototype.draw = function (cxt) {
@@ -72,7 +72,7 @@ function getRandom(option) {
             ret = Math.random() * window.innerHeight;
             break;
         case 's':
-            ret = Math.random() *0.5 + 0.3;
+            ret = Math.random() *0.8 + 0.1;
             break;
         case 'r':
             ret = Math.random() * 6;
