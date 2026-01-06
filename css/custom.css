@@ -1,0 +1,182 @@
+/* ========== Valine 整体美化（适配 Butterfly） ========== */
+/* 文件：source/css/custom.css
+   使用说明：将本段全部复制到你的 custom.css，
+   并确保主题已加载 /css/custom.css（通常通过 inject head 引入）。
+*/
+
+/* 基本容器与卡片风格 */
+#vcomments {
+  background: var(--card-bg, #ffffff);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+  color: var(--text-color, #222);
+  --valine-radius: 12px;
+}
+
+/* 输入区容器定位（用于自定义提示） */
+#vcomments .vwrap {
+  position: relative;
+  margin-bottom: 18px;
+  padding: 8px 0;
+}
+
+/* 隐藏原生 placeholder 的可见文本（我们用透明代替）*/
+#vcomments textarea::placeholder,
+#vcomments input::placeholder {
+  color: transparent;
+  transition: color .18s;
+}
+
+/* 输入框样式 */
+#vcomments input,
+#vcomments textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px !important;
+  border: 1px solid rgba(0,0,0,0.10) !important;
+  padding: 12px 14px !important;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+  background: var(--input-bg, rgba(250,250,250,1));
+  color: inherit;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+}
+
+/* focus 效果 */
+#vcomments input:focus,
+#vcomments textarea:focus {
+  border-color: var(--theme-color, #06f) !important;
+  box-shadow: 0 6px 18px rgba(6, 100, 255, 0.06);
+}
+
+/* 提交按钮 */
+#vcomments .vsubmit {
+  background: var(--theme-color, #06f) !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+  padding: 8px 24px !important;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+}
+#vcomments .vsubmit:hover { opacity: 0.92; }
+
+/* 评论卡片 */
+#vcomments .vcard {
+  background: rgba(0,0,0,0.03);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+/* 作者 / 时间 */
+#vcomments .vnick { font-weight: 600; color: var(--theme-color, #06f); }
+#vcomments .vtime { font-size: 12px; opacity: 0.6; }
+
+/* 操作/回复 */
+#vcomments .vat { color: var(--theme-color, #06f); font-size: 13px; }
+
+/* 隐藏 valine 自带的头像边框（可选）*/
+#vcomments .vcard .vavatar img {
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+/* ========== 自定义 placeholder（视觉替代） ========== */
+/* 思路：隐藏原生 placeholder 文本（上面已设为透明），然后用伪元素显示自定义文本。
+   优先使用 :has() 检测 textarea 是否显示 placeholder（即为空）；不支持 :has 的浏览器使用 focus-within 回退。
+*/
+
+/* 基本伪元素样式（位于 textarea 之上）*/
+#vcomments .vwrap::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  right: 14px;
+  pointer-events: none;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(60,60,60,0.6);
+  transition: opacity .12s, transform .12s;
+  white-space: pre-line; /* 支持多行显示 */
+  transform-origin: left top;
+  z-index: 2;
+}
+
+/* ========== 浏览器支持分支：优先使用 :has()（最准确） ========== */
+@supports (selector(:has(*))) {
+  /* 当容器内的 textarea 正处于 placeholder-shown（即为空）时显示自定义提示 */
+  #vcomments .vwrap:has(textarea:placeholder-shown)::before {
+    content: "欢迎留言～\A支持 Markdown，理性讨论，文明发言";
+    opacity: 1;
+  }
+  /* 否则隐藏伪元素（有内容或不为空） */
+  #vcomments .vwrap:not(:has(textarea:placeholder-shown))::before {
+    opacity: 0;
+    transform: translateY(-6px) scale(.99);
+  }
+}
+
+/* ========== 回退：不支持 :has 的浏览器 ========== */
+/* 这里使用 focus-within 隐藏提示（按下聚焦时隐藏）。
+   缺陷：当用户输入后失去焦点，提示可能会再次显现 —— 因为无法用纯 CSS 检测“已经有值”的状态。
+   所以此回退还是推荐配合 Valine config 一起使用以彻底解决。 */
+@supports not (selector(:has(*))) {
+  #vcomments .vwrap::before {
+    content: "欢迎留言～ 支持 Markdown，理性讨论，文明发言";
+    opacity: 1;
+  }
+  /* 聚焦时隐藏 */
+  #vcomments .vwrap:focus-within::before {
+    opacity: 0;
+    transform: translateY(-6px) scale(.99);
+  }
+}
+
+/* 为了兼容视觉优先，在小屏上把 placeholder 文本做得更小 */
+@media (max-width: 768px) {
+  #vcomments {
+    padding: 16px;
+  }
+  #vcomments .vwrap::before {
+    top: 10px;
+    left: 12px;
+    right: 12px;
+    font-size: 13px;
+  }
+  #vcomments textarea { min-height: 96px; }
+  #vcomments .vsubmit { width: 100%; display: block; margin-top: 10px; }
+}
+
+/* ========== 暗黑模式（Butterfly 常用 data-theme） ========== */
+html[data-theme="dark"] #vcomments {
+  background: #141414;
+  color: #e8e8e8;
+  box-shadow: none;
+}
+html[data-theme="dark"] #vcomments .vcard {
+  background: #1f1f1f;
+}
+html[data-theme="dark"] #vcomments input,
+html[data-theme="dark"] #vcomments textarea {
+  background: #1a1a1a;
+  border-color: #333 !important;
+  color: #ddd;
+}
+/* 伪提示在暗黑下颜色调整 */
+html[data-theme="dark"] #vcomments .vwrap::before {
+  color: rgba(220,220,220,0.45);
+}
+
+/* ========== 可选：隐藏网站输入框（如果你不想显示） ========== */
+#vcomments .vheader .vinput:nth-child(3) { display: none; }
+
+/* ========== 结束 ========== */
