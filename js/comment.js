@@ -3,24 +3,24 @@
     const input = document.querySelector('#wl-nick')
     const label = document.querySelector('label[for="wl-nick"]')
     const input1 = document.querySelector('#wl-mail')
-    const label2 = document.querySelector('label[for="wl-mail"]')
+    const label1 = document.querySelector('label[for="wl-mail"]')
     
     if (input) {
       input.placeholder = 'QQ号可显示头像'
     }
     if (input1) {
-      input.placeholder = '可选'
+      input1.placeholder = '可选'
     }
 
     if (label) {
       label.textContent = '昵称'
     }
-    if (label) {
-      label.textContent = '邮箱'
+    if (label1) {
+      label1.textContent = '邮箱'
     }
     
     // 两个都处理到了，才算完成
-    return !!(input && label)
+    return !!(input && label && input1 && label1)
   }
 
   const observer = new MutationObserver(() => {
