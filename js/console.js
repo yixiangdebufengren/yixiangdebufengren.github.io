@@ -70,9 +70,3 @@ var ctrl = {
   }
   
 }
-
-
-作者: 南方嘉木
-链接: https://blog.cancin.cn/post/ac62cfd5.html
-来源: 参星阁
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
