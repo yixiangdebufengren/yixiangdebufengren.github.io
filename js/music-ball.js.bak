@@ -1,253 +1,220 @@
-(function () {
+(function(){
 
-    if (window.musicBallInit) return;
-    window.musicBallInit = true;
+if(window.musicBallV22)
+return;
 
+window.musicBallV22=true;
 
-    let songs = [];
-    let current = 0;
 
+let timer=null;
 
-    const audio = document.createElement("audio");
-    document.body.appendChild(audio);
+let isLong=false;
 
+let isMove=false;
 
 
-    const ball = document.createElement("div");
+let startX,startY;
 
-    ball.id = "music-ball";
-    ball.innerHTML = "🎵";
+let startLeft,startTop;
 
-    document.body.appendChild(ball);
 
 
+const ball=document.querySelector("#music-ball");
 
-    const panel = document.createElement("div");
 
-    panel.id = "music-panel";
+if(!ball)
+return;
 
-    panel.innerHTML = `
-        <div class="music-header">
-            🎵 我的歌单
-        </div>
-        <div id="music-list">
-        </div>
-    `;
 
-    document.body.appendChild(panel);
 
+ball.onpointerdown=function(e){
 
 
-    // 读取歌单
+isLong=false;
 
-    fetch("/music/music.json")
-    .then(res=>res.json())
-    .then(data=>{
+isMove=false;
 
 
-        songs=data;
+startX=e.clientX;
 
+startY=e.clientY;
 
-        const list =
-        document.querySelector("#music-list");
 
+let rect=ball.getBoundingClientRect();
 
-        songs.forEach((song,index)=>{
 
+startLeft=rect.left;
 
-            let item =
-            document.createElement("div");
+startTop=rect.top;
 
 
-            item.className="music-item";
 
+timer=setTimeout(()=>{
 
-            item.innerHTML =
-            song.title;
 
+isLong=true;
 
-            item.onclick=function(){
 
+let audio=document.querySelector("#music-audio");
 
-                play(index);
 
+if(audio){
 
-            };
+if(audio.paused)
+audio.play();
+else
+audio.pause();
 
+}
 
-            list.appendChild(item);
 
+},600);
 
-        });
 
 
-    });
+ball.setPointerCapture(
+e.pointerId
+);
 
 
+};
 
 
-    function play(index){
 
 
-        current=index;
 
+ball.onpointermove=function(e){
 
-        audio.src=
-        songs[index].url;
 
+let dx=e.clientX-startX;
 
-        audio.play();
+let dy=e.clientY-startY;
 
 
-        ball.classList.add("playing");
 
+if(
+Math.abs(dx)>5 ||
+Math.abs(dy)>5
+){
 
-    }
+isMove=true;
 
+clearTimeout(timer);
 
 
 
-    audio.onpause=function(){
+let x=startLeft+dx;
 
-        ball.classList.remove("playing");
+let y=startTop+dy;
 
-    };
 
 
-    audio.onended=function(){
+x=Math.max(
+0,
+Math.min(
+window.innerWidth-60,
+x
+)
+);
 
-        play(
-            (current+1)%songs.length
-        );
 
-    };
+y=Math.max(
+0,
+Math.min(
+window.innerHeight-60,
+y
+)
+);
 
 
 
-    /*
-       点击球：
-       展开歌单
-    */
+ball.style.left=x+"px";
 
-    ball.onclick=function(e){
+ball.style.top=y+"px";
 
 
-        if(ball.dataset.dragging==="true"){
-            return;
-        }
+ball.style.right="auto";
 
+ball.style.bottom="auto";
 
-        panel.classList.toggle("show");
 
+}
 
-    };
 
 
+};
 
-    /*
-       拖动
-    */
 
 
-    let startX;
-    let startY;
 
-    let startLeft;
-    let startTop;
 
+ball.onpointerup=function(){
 
 
-    ball.addEventListener(
-        "touchstart",
-        function(e){
+clearTimeout(timer);
 
 
-            let touch=e.touches[0];
 
+if(isMove){
 
-            startX=touch.clientX;
-            startY=touch.clientY;
 
+let rect=
+ball.getBoundingClientRect();
 
-            startLeft=ball.offsetLeft;
-            startTop=ball.offsetTop;
 
+let x=rect.left;
 
-            ball.dataset.dragging="false";
 
+if(
+x <
+window.innerWidth/2
+){
 
-        }
-    );
+ball.style.left="10px";
 
 
+}else{
 
 
-    ball.addEventListener(
-        "touchmove",
-        function(e){
+ball.style.left=
+window.innerWidth-70+"px";
 
 
-            let touch=e.touches[0];
+}
 
 
-            let moveX=
-            touch.clientX-startX;
 
+return;
 
-            let moveY=
-            touch.clientY-startY;
 
+}
 
 
-            if(
-                Math.abs(moveX)>5 ||
-                Math.abs(moveY)>5
-            ){
 
-                ball.dataset.dragging="true";
+if(isLong){
 
-            }
+return;
 
+}
 
 
-            let x=
-            startLeft+moveX;
 
+//短按
 
-            let y=
-            startTop+moveY;
+let panel=
+document.querySelector("#music-panel");
 
 
+if(panel){
 
-            x=Math.max(
-                0,
-                Math.min(
-                    window.innerWidth-55,
-                    x
-                )
-            );
+panel.classList.toggle("show");
 
+}
 
-            y=Math.max(
-                0,
-                Math.min(
-                    window.innerHeight-55,
-                    y
-                )
-            );
 
 
+};
 
-            ball.style.left=x+"px";
-            ball.style.top=y+"px";
-
-            ball.style.right="auto";
-            ball.style.bottom="auto";
-
-
-
-        }
-    );
 
 
 
