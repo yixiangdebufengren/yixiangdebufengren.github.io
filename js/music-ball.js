@@ -1,253 +1,447 @@
-(function () {
+(function(){
 
-    if (window.musicBallInit) return;
-    window.musicBallInit = true;
 
+if(window.musicBallV2)
+return;
 
-    let songs = [];
-    let current = 0;
 
+window.musicBallV2=true;
 
-    const audio = document.createElement("audio");
-    document.body.appendChild(audio);
 
 
+let songs=[];
 
-    const ball = document.createElement("div");
+let index=0;
 
-    ball.id = "music-ball";
-    ball.innerHTML = "🎵";
+let dragging=false;
 
-    document.body.appendChild(ball);
 
 
+const audio=document.createElement("audio");
 
-    const panel = document.createElement("div");
+document.body.appendChild(audio);
 
-    panel.id = "music-panel";
 
-    panel.innerHTML = `
-        <div class="music-header">
-            🎵 我的歌单
-        </div>
-        <div id="music-list">
-        </div>
-    `;
 
-    document.body.appendChild(panel);
 
 
+const ball=document.createElement("div");
 
-    // 读取歌单
+ball.id="music-ball";
 
-    fetch("/music/music.json")
-    .then(res=>res.json())
-    .then(data=>{
 
+ball.innerHTML=
+`
+<div class="music-disc"></div>
+`;
 
-        songs=data;
 
+document.body.appendChild(ball);
 
-        const list =
-        document.querySelector("#music-list");
 
 
-        songs.forEach((song,index)=>{
 
 
-            let item =
-            document.createElement("div");
+const panel=document.createElement("div");
 
 
-            item.className="music-item";
+panel.id="music-panel";
 
 
-            item.innerHTML =
-            song.title;
+panel.innerHTML=
+`
+<div class="music-title">
+🎧 我的歌单
+</div>
 
+<div id="music-list"></div>
 
-            item.onclick=function(){
+`;
 
 
-                play(index);
+document.body.appendChild(panel);
 
 
-            };
 
 
-            list.appendChild(item);
+const disc=
+ball.querySelector(".music-disc");
 
 
-        });
 
 
-    });
 
+fetch("/music/music.json")
 
+.then(r=>r.json())
 
+.then(data=>{
 
-    function play(index){
 
+songs=data;
 
-        current=index;
 
+render();
 
-        audio.src=
-        songs[index].url;
 
+if(
+localStorage.musicIndex
+){
 
-        audio.play();
+index=
+Number(localStorage.musicIndex);
 
+}
 
-        ball.classList.add("playing");
 
 
-    }
+loadSong(index,false);
 
 
 
+});
 
-    audio.onpause=function(){
 
-        ball.classList.remove("playing");
 
-    };
 
 
-    audio.onended=function(){
+function render(){
 
-        play(
-            (current+1)%songs.length
-        );
 
-    };
+let list=
+document.querySelector("#music-list");
 
 
+songs.forEach((s,i)=>{
 
-    /*
-       点击球：
-       展开歌单
-    */
 
-    ball.onclick=function(e){
+let item=
+document.createElement("div");
 
 
-        if(ball.dataset.dragging==="true"){
-            return;
-        }
+item.className="music-item";
 
 
-        panel.classList.toggle("show");
+item.innerText=s.title;
 
 
-    };
 
+item.onclick=function(){
 
 
-    /*
-       拖动
-    */
+play(i);
 
 
-    let startX;
-    let startY;
+};
 
-    let startLeft;
-    let startTop;
 
 
+list.appendChild(item);
 
-    ball.addEventListener(
-        "touchstart",
-        function(e){
 
+});
 
-            let touch=e.touches[0];
 
+}
 
-            startX=touch.clientX;
-            startY=touch.clientY;
 
 
-            startLeft=ball.offsetLeft;
-            startTop=ball.offsetTop;
 
+function loadSong(i,autoplay){
 
-            ball.dataset.dragging="false";
 
+index=i;
 
-        }
-    );
 
+audio.src=
+songs[i].url;
 
 
+localStorage.musicIndex=i;
 
-    ball.addEventListener(
-        "touchmove",
-        function(e){
 
 
-            let touch=e.touches[0];
+if(autoplay)
 
+audio.play();
 
-            let moveX=
-            touch.clientX-startX;
 
 
-            let moveY=
-            touch.clientY-startY;
+}
 
 
 
-            if(
-                Math.abs(moveX)>5 ||
-                Math.abs(moveY)>5
-            ){
 
-                ball.dataset.dragging="true";
+function play(i){
 
-            }
 
+loadSong(i,true);
 
 
-            let x=
-            startLeft+moveX;
+disc.classList.add("playing");
 
 
-            let y=
-            startTop+moveY;
+updateActive();
 
 
+}
 
-            x=Math.max(
-                0,
-                Math.min(
-                    window.innerWidth-55,
-                    x
-                )
-            );
 
 
-            y=Math.max(
-                0,
-                Math.min(
-                    window.innerHeight-55,
-                    y
-                )
-            );
 
 
+function updateActive(){
 
-            ball.style.left=x+"px";
-            ball.style.top=y+"px";
 
-            ball.style.right="auto";
-            ball.style.bottom="auto";
+document
+.querySelectorAll(".music-item")
+.forEach(
+(e,i)=>{
 
 
+e.classList.toggle(
+"active",
+i===index
+);
 
-        }
-    );
+
+});
+
+
+}
+
+
+
+
+ball.onclick=function(){
+
+
+if(dragging)
+return;
+
+
+
+if(audio.paused){
+
+
+audio.play();
+
+
+disc.classList.add("playing");
+
+
+}else{
+
+
+audio.pause();
+
+
+disc.classList.remove("playing");
+
+
+}
+
+
+
+};
+
+
+
+
+
+audio.onended=function(){
+
+
+play(
+(index+1)%songs.length
+);
+
+
+};
+
+
+
+audio.onpause=function(){
+
+disc.classList.remove("playing");
+
+};
+
+
+
+/*
+拖动
+*/
+
+
+let sx,sy;
+
+let ox,oy;
+
+
+ball.addEventListener(
+"pointerdown",
+e=>{
+
+
+dragging=false;
+
+
+sx=e.clientX;
+
+sy=e.clientY;
+
+
+const rect=
+ball.getBoundingClientRect();
+
+
+ox=rect.left;
+
+oy=rect.top;
+
+
+
+ball.setPointerCapture(
+e.pointerId
+);
+
+
+});
+
+
+
+
+
+ball.addEventListener(
+"pointermove",
+e=>{
+
+
+let dx=
+e.clientX-sx;
+
+
+let dy=
+e.clientY-sy;
+
+
+if(
+Math.abs(dx)>5 ||
+Math.abs(dy)>5
+){
+
+dragging=true;
+
+
+ball.style.transform=
+`
+translate(
+${dx}px,
+${dy}px
+)
+`;
+
+}
+
+
+});
+
+
+
+
+
+ball.addEventListener(
+"pointerup",
+e=>{
+
+
+if(!dragging)
+return;
+
+
+
+const rect=
+ball.getBoundingClientRect();
+
+
+let x=rect.left;
+
+let y=rect.top;
+
+
+
+if(
+x <
+window.innerWidth/2
+)
+
+x=10;
+
+else
+
+x=
+window.innerWidth-70;
+
+
+
+ball.style.transform="";
+
+
+ball.style.left=x+"px";
+
+ball.style.top=y+"px";
+
+
+ball.style.right="auto";
+
+ball.style.bottom="auto";
+
+
+
+localStorage.musicPosition=
+JSON.stringify({
+x:x,
+y:y
+});
+
+
+
+});
+
+
+
+
+
+/*
+恢复位置
+*/
+
+
+let pos=
+localStorage.musicPosition;
+
+
+if(pos){
+
+
+pos=JSON.parse(pos);
+
+
+ball.style.left=
+pos.x+"px";
+
+
+ball.style.top=
+pos.y+"px";
+
+
+ball.style.right="auto";
+
+ball.style.bottom="auto";
+
+
+}
 
 
 

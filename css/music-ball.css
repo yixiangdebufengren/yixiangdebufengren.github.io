@@ -1,42 +1,85 @@
-#music-ball {
-    position: fixed;
-    right: 25px;
-    bottom: 100px;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    z-index: 9999;
+#music-ball{
 
-    background:
-    linear-gradient(135deg,
-    rgba(255,255,255,.9),
-    rgba(240,240,240,.6));
+position:fixed;
 
-    box-shadow:
-    0 5px 20px rgba(0,0,0,.25);
+width:58px;
+height:58px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+right:25px;
+bottom:120px;
 
-    font-size:26px;
+z-index:99999;
 
-    user-select:none;
-    touch-action:none;
+border-radius:50%;
 
-    backdrop-filter:blur(10px);
 
-    transition:.3s;
+display:flex;
+align-items:center;
+justify-content:center;
+
+
+background:
+rgba(255,255,255,.28);
+
+
+border:
+1px solid rgba(255,255,255,.45);
+
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.25);
+
+
+backdrop-filter:
+blur(15px);
+
+
+-webkit-backdrop-filter:
+blur(15px);
+
+
+touch-action:none;
+
+user-select:none;
+
+
 }
 
 
-#music-ball.playing{
-    animation:
-    rotate 3s linear infinite;
+
+.music-disc{
+
+
+width:38px;
+height:38px;
+
+
+border-radius:50%;
+
+
+background:
+radial-gradient(
+circle,
+#fff 0 8%,
+#333 10% 18%,
+#111 20% 100%
+);
+
+
 }
 
 
-@keyframes rotate {
+
+.music-disc.playing{
+
+animation:
+musicRotate 3s linear infinite;
+
+}
+
+
+
+@keyframes musicRotate{
 
 from{
 transform:rotate(0deg);
@@ -50,32 +93,69 @@ transform:rotate(360deg);
 
 
 
+
 #music-panel{
+
 
 position:fixed;
 
+
 right:20px;
-bottom:170px;
 
-width:260px;
+bottom:190px;
 
-max-height:350px;
+
+width:280px;
+
+
+max-height:380px;
+
+
+overflow:auto;
+
+
+padding:18px;
+
+
+border-radius:22px;
+
+
+z-index:99998;
+
+
 
 background:
-rgba(255,255,255,.9);
 
-border-radius:20px;
+rgba(255,255,255,.25);
 
-padding:15px;
 
-z-index:9998;
+
+border:
+
+1px solid rgba(255,255,255,.4);
+
+
+
+backdrop-filter:
+
+blur(20px);
+
+
+
+-webkit-backdrop-filter:
+
+blur(20px);
+
+
 
 box-shadow:
-0 10px 30px rgba(0,0,0,.2);
+
+0 15px 40px rgba(0,0,0,.25);
+
+
 
 display:none;
 
-overflow:auto;
 
 }
 
@@ -89,105 +169,44 @@ display:block;
 
 
 
-.music-item{
+.music-title{
 
-padding:12px;
-
-border-radius:10px;
-
-cursor:pointer;
-
-}
-
-
-
-.music-item:hover{
-
-background:#eee;
-
-}
-
-
-
-#music-title{
-
-font-weight:bold;
-
-margin-bottom:10px;
-
-}
-
-
-
-#music-lyric{
-
-margin-top:15px;
-
-font-size:14px;
-
-color:#666;
-
-text-align:center;
-
-}
-#music-panel{
-
-position:fixed;
-
-right:20px;
-
-bottom:170px;
-
-width:250px;
-
-max-height:350px;
-
-overflow:auto;
-
-background:white;
-
-border-radius:18px;
-
-padding:15px;
-
-box-shadow:
-0 8px 30px rgba(0,0,0,.2);
-
-display:none;
-
-z-index:9998;
-
-}
-
-
-
-#music-panel.show{
-
-display:block;
-
-}
-
-
-
-.music-header{
 
 font-size:18px;
 
-font-weight:bold;
+font-weight:700;
 
-margin-bottom:10px;
+margin-bottom:15px;
+
 
 }
 
 
 
+
 .music-item{
+
 
 padding:12px;
 
-border-radius:10px;
+border-radius:12px;
 
-cursor:pointer;
+transition:.25s;
+
+
+}
+
+
+
+.music-item.active{
+
+
+background:
+rgba(255,255,255,.35);
+
+
+font-weight:bold;
+
 
 }
 
@@ -195,14 +214,9 @@ cursor:pointer;
 
 .music-item:hover{
 
-background:#f3f3f3;
 
-}
+background:
+rgba(255,255,255,.3);
 
-
-
-#music-ball{
-
-touch-action:none;
 
 }
