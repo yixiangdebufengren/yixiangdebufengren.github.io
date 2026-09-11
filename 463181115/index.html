@@ -1,0 +1,897 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>其他人QQ空间归档</title><meta name="author" content="异乡的捕风人"><meta name="copyright" content="异乡的捕风人"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="从创建QQ开始 截止到2026年9月">
+<meta property="og:type" content="article">
+<meta property="og:title" content="其他人QQ空间归档">
+<meta property="og:url" content="https://yixiangren.top/463181115/">
+<meta property="og:site_name" content="异乡人博客">
+<meta property="og:description" content="从创建QQ开始 截止到2026年9月">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yixiangren.top/images/cover2.jpg">
+<meta property="article:published_time" content="2026-09-11T07:04:21.000Z">
+<meta property="article:modified_time" content="2026-09-11T11:29:02.605Z">
+<meta property="article:author" content="异乡的捕风人">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yixiangren.top/images/cover2.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "其他人QQ空间归档",
+  "url": "https://yixiangren.top/463181115/",
+  "image": "https://yixiangren.top/images/cover2.jpg",
+  "datePublished": "2026-09-11T07:04:21.000Z",
+  "dateModified": "2026-09-11T11:29:02.605Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "异乡的捕风人",
+      "url": "https://yixiangren.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://yixiangren.top/463181115/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '其他人QQ空间归档',
+  isHighlightShrink: true,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" /><link rel="stylesheet" href="/css/music-ball.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/butterfly-icon.png" onerror="this.onerror=null;this.src='/images/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 足迹</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/butterfly-icon-top.ico" alt="Logo" loading='lazy'><span class="site-name">异乡人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">其他人QQ空间归档</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 足迹</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">其他人QQ空间归档</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-11T07:04:21.000Z" title="发表于 2026-09-11 15:04:21">2026-09-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-11T11:29:02.605Z" title="更新于 2026-09-11 19:29:02">2026-09-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/463181115/#post-comment"><span class="waline-comment-count" data-path="/463181115/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="QQ空间-·-其他动态"><a href="#QQ空间-·-其他动态" class="headerlink" title="QQ空间 · 其他动态"></a>QQ空间 · 其他动态</h1><blockquote>
+<p>共 33 条动态 · 从 QQ 空间导出归档</p>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-04-09 12:41</em></p>
+<p>今天遇到一个大傻逼，问问题呢，问着问着人没了<img class="qemoji" src="/images/qzone_other/em/e10287.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p>💬 8 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-04-09 12:43：你大爷</p>
+<blockquote>
+<p><strong>向淼</strong> 2021-04-09 12:44 回复 <strong>@异乡的捕风人</strong>：我大爷在坟里呢，有什么事吗？<br><strong>异乡的捕风人</strong> 2021-04-09 12:45：<img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>向淼</strong> 2021-04-09 12:46 回复 <strong>@异乡的捕风人</strong>：竖中指谁不会呀？<img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>异乡的捕风人</strong> 2021-04-09 12:50：你妹的<br><strong>向淼</strong> 2021-04-09 12:50 回复 <strong>@异乡的捕风人</strong>：我妹在云南呢，你要去吗？<br><strong>异乡的捕风人</strong> 2021-04-09 12:52：你大爷的<br><strong>向淼</strong> 2021-04-09 12:53 回复 <strong>@异乡的捕风人</strong>：我都说了，他老人家在坟里边，你要找他，你下去找<br><strong>异乡的捕风人</strong> 2021-04-09 12:53：你的<br><strong>向淼</strong> 2021-04-09 12:54 回复 <strong>@异乡的捕风人</strong>：我的啥呀？我的<br><strong>异乡的捕风人</strong> 2021-04-09 12:53：总行了吧<br><strong>向淼</strong> 2021-04-09 12:54 回复 <strong>@异乡的捕风人</strong>：没词儿了就别BB<br><strong>异乡的捕风人</strong> 2021-04-09 12:55：我语文学的还可以<br><strong>异乡的捕风人</strong> 2021-04-09 13:01 回复 <strong>@向淼</strong>：***<br><strong>向淼</strong> 2021-04-09 13:02 回复 <strong>@异乡的捕风人</strong>：咋打出来是星号啊？说明你搞黄色<img class="qemoji" src="/images/qzone_other/em/e402210.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>异乡的捕风人</strong> 2021-04-09 13:04 回复 <strong>@向淼</strong>：f-rank<br><strong>异乡的捕风人</strong> 2021-04-09 13:04：f-rank不要那个刚<br><strong>向淼</strong> 2021-04-09 13:05 回复 <strong>@异乡的捕风人</strong>：沙雕啊</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-04-17 02:48</em></p>
+<p>今天又遇到一个傻逼,刚回了我说说,发个消息人没了<img class="qemoji" src="/images/qzone_other/em/e10268.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-04-17 03:07：<img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p><strong>向淼</strong> 2021-04-17 03:09 回复 <strong>@异乡的捕风人</strong>：<img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-05-04 02:52</em></p>
+<p>这是什么牌子的大傻逼？<img class="qemoji" src="/images/qzone_other/em/e10268.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'>现在还没回我呢<img class="qemoji" src="/images/qzone_other/em/e401185.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/a5b463df999652e8.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-05-04 03:21：我TM对你开的消息免打扰</p>
+<blockquote>
+<p><strong>向淼</strong> 2021-05-04 06:37 回复 <strong>@异乡的捕风人</strong>：<img class="qemoji" src="/images/qzone_other/em/e401209.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'>😠</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-06-24 11:05</em></p>
+<p>一共有多少张照片呢？<img class="qemoji" src="/images/qzone_other/em/e400101.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e400104.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e400640.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/693c2e1c7565e5d6.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/c3dcf78e49422f77.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/a94b11448957b127.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 2 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-06-24 13:28：好苗的无语，我用你的军训服</p>
+<blockquote>
+<p><strong>向淼</strong> 2021-06-24 13:32 回复 <strong>@异乡的捕风人</strong>：<img class="qemoji" src="/images/qzone_other/em/e400824.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>向淼</strong> 2021-06-24 13:33 回复 <strong>@异乡的捕风人</strong>：你这说的好像又不是没洗过<img class="qemoji" src="/images/qzone_other/em/e400824.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>马明丽</strong> 2021-06-24 14:17 回复 <strong>@异乡的捕风人</strong>：六六</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3011264206.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 谭晓倩（3011264206）
+
+<p><em>2021-07-10 00:56</em></p>
+<p>好家伙！睡个觉能让蚊子把我眼睛叮肿（照片太丑不敢拍）</p>
+<p><img src="/images/qzone_other/images/7f652f83ff39c5b7.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-07-10 03:41：要叮你眼珠子就好玩了</p>
+<blockquote>
+<p><strong>谭晓倩</strong> 2021-07-10 03:43 回复 <strong>@异乡的捕风人</strong>：😏😏😏😏😏😏😏😏</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/1755429033.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 屈老师（1755429033）
+
+<p><em>2021-07-14 09:57</em></p>
+<p><img src="/images/qzone_other/images/d27b4c0e551af76f.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/a2f68ea9275daf32.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/509889da41c968c1.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 0 条评论</p>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-08-01 11:49</em></p>
+<p>又是打游戏没人陪，吃狗粮的一天😄</p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-08-01 12:22：我怎么感觉你这玩意发过一次？</p>
+<blockquote>
+<p><strong>向淼</strong> 2021-08-01 12:45 回复 <strong>@异乡的捕风人</strong>：你翻翻不就知道了？</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-08-03 09:52</em></p>
+<p>这局原本就已经注定要输了，敌人都已经推上高地了<img class="qemoji" src="/images/qzone_other/em/e400101.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e400104.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e400640.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'>但是我们翻盘成功了<img class="qemoji" src="/images/qzone_other/em/e10300.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/83b3da53f0f8e7e3.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-08-03 11:01：一天五条动态，生产队的驴都不敢这么更呐</p>
+<blockquote>
+<p><strong>向淼</strong> 2021-08-03 11:47 回复 <strong>@异乡的捕风人</strong>：我不介意再多发点儿<br><strong>异乡的捕风人</strong> 2021-08-03 13:25 回复 <strong>@向淼</strong>：有本事来个99+😄😄<br><strong>向淼</strong> 2021-08-03 13:26 回复 <strong>@异乡的捕风人</strong>：什么东西</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/212266859.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 詹世杰（212266859）
+
+<p><em>2021-08-08 04:00</em></p>
+<p>我操，真尼玛是良心福啊。</p>
+<p><img src="/images/qzone_other/images/10c668efbaf9f131.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-08-08 09:31：😳x2 大眼珠子</p>
+<blockquote>
+<p><strong>詹世杰</strong> 2021-08-08 13:33 回复 <strong>@异乡的捕风人</strong>：哈哈</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/1450115701.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 康桑（1450115701）
+
+<p><em>2021-09-08 07:26</em></p>
+<p>不用介绍了哈 你们都认识@.</p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-09-08 13:42：99999</p>
+<blockquote>
+<p><strong>康桑</strong> 2021-09-08 14:06 回复 <strong>@异乡的捕风人</strong>：嗯嗯😓</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/1450115701.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 康桑（1450115701）
+
+<p><em>2021-09-22 12:59</em></p>
+<p>生日快乐！天天开心！@异乡的捕风人</p>
+<p><img src="/images/qzone_other/images/ebd57504b1744c22.gif" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/3aa02a112c46ab6f.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-09-22 13:01：以后莫说淡了淡了 加点盐<img class="qemoji" src="/images/qzone_other/em/e402469.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'>就不得淡了</p>
+<blockquote>
+<p><strong>康桑</strong> 2021-09-22 13:02 回复 <strong>@异乡的捕风人</strong>：以后莫说淡了淡了 加点盐<img class="qemoji" src="/images/qzone_other/em/e402469.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'>就不得淡了<br><strong>异乡的捕风人</strong> 2021-09-22 13:04 回复 <strong>@康桑</strong>：哈哈</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3080705462.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 向淼（3080705462）
+
+<p><em>2021-10-12 07:57</em></p>
+<p>我最喜欢数学了，它没有语文的曲折，没有政史的死板枯燥，没有英语那么多语法，它有的，只有不会做，不会…</p>
+<p><img src="/images/qzone_other/images/4f51dce56931cc26.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-10-12 13:05：还可以不做<img class="qemoji" src="/images/qzone_other/em/e10306.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p><strong>向淼</strong> 2021-10-12 13:05 回复 <strong>@异乡的捕风人</strong>：你真tnd是个人才<br><strong>异乡的捕风人</strong> 2021-10-12 13:07 回复 <strong>@向淼</strong>：抄也是个不错的选择<br><strong>向淼</strong> 2021-10-12 13:07 回复 <strong>@异乡的捕风人</strong>：我抄都懒得抄</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3590309482.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 段红州（3590309482）
+
+<p><em>2021-10-12 13:12</em></p>
+<p>铁汁们我怀疑他骂我但是我没有证据</p>
+<p><img src="/images/qzone_other/images/cecff631b610929f.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2021-10-12 13:19：还有三个洛河</p>
+<blockquote>
+<p><strong>段红州</strong> 2021-10-12 13:20 回复 <strong>@异乡的捕风人</strong>：四个</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/212266859.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 詹世杰（212266859）
+
+<p><em>2022-02-19 06:14</em></p>
+<p>哎，穷了</p>
+<p><img src="/images/qzone_other/images/4db7ffd7b8ac8bf7.gif" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/5faa0be9a0a6c840.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2022-02-21 10:53：我仓库176红光爆仓</p>
+<blockquote>
+<p><strong>╭温眸 。（圣神)</strong> 2022-03-20 02:11 回复 <strong>@异乡的捕风人</strong>：就这？</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3581360585.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 文丹（3581360585）
+
+<p><em>2022-08-12 12:33</em></p>
+<p>庆幸自己的15岁，并不是第15天，而是第15个四季交替等来的第15个生日！感谢大家的陪伴😱</p>
+<p><img src="/images/qzone_other/images/6f4f1a153a900fed.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/9e5f7e7bca6da7f7.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/b30a969c9c3177f3.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2022-08-12 13:59：你爹祝你生日快乐</p>
+<blockquote>
+<p><strong>文丹</strong> 2022-08-12 14:13 回复 <strong>@异乡的捕风人</strong>：哈哈，看在你才回来就饶你一回吧。😍</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/1809213525.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 陈丹丹（1809213525）
+
+<p><em>2022-09-02 14:33</em></p>
+<p>心无杂念自然神.</p>
+<blockquote>
+<p>📹 <a target="_blank" rel="noopener" href="https://photovideo.photo.qq.com/1074_0b2ecdmwa2yphmahi4y5k5rt2eaembcq6cca.f0.mp4?dis_k=31178d35405adc67b4ae98d723dbb3a8&dis_t=1789095138&vuin=548568296&owner=MTgwOTIxMzUyNQ==">查看视频</a></p>
+</blockquote>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>雷春晓</strong> 2022-09-02 14:34：切切切吓屎我了我还以为你他哥的真的要发那个嘞</p>
+<blockquote>
+<p><strong>陈丹丹</strong> 2022-09-02 14:36 回复 <strong>@雷春晓</strong>：今晚我就算不睡也要给你剪出来那个视频，明天保证你看得见<img class="qemoji" src="/images/qzone_other/em/e400826.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e400826.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e400826.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>异乡的捕风人</strong> 2022-09-03 00:06 回复 <strong>@陈丹丹</strong>：你是怎么做到脸瘦一圈的？抽脂？<br><strong>陈丹丹</strong> 2022-09-03 02:13 回复 <strong>@异乡的捕风人</strong>：不要造谣我！！！！我瘦了！！！！！！</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3484795428.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 王雅丽（3484795428）
+
+<p><em>2022-09-11 15:47</em></p>
+<p>日吧歘 真服了 出去玩  五个人行 必有俩人秀恩爱</p>
+<p><img src="/images/qzone_other/images/77affe56f6a0dd15.gif" loading='lazy'></p>
+<blockquote>
+<p>💬 0 条评论</p>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/2209065756.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 张芙笙（2209065756）
+
+<p><em>2023-02-18 12:41</em></p>
+<p>单挑好市民不拜佛不秒蹲 断触一哥与人坤坨喜<img class="qemoji" src="/images/qzone_other/em/e400408.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2023-02-19 00:35：我靠和平的腰射好集中啊</p>
+<blockquote>
+<p><strong>张芙笙</strong> 2023-02-19 01:57 回复 <strong>@异乡的捕风人</strong>：枪械配件不一样</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/2118814195.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 杨鑫（2118814195）
+
+<p><em>2023-03-31 11:11</em></p>
+<p>还有比看到别人点赞自己之前非主流的动态尬的事嘛（我真服了，当时好傻逼）🤧🤧</p>
+<p><img src="/images/qzone_other/images/a2175e15792ae506.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2023-03-31 11:30：这号这号不是草真一在用吗</p>
+<blockquote>
+<p><strong>康桑</strong> 2023-03-31 12:16 回复 <strong>@异乡的捕风人</strong>：真的很想笑“草真一”<br><strong>杨鑫</strong> 2023-03-31 12:16 回复 <strong>@康桑</strong>：对对对</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/1467821932.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 王汉杰（1467821932）
+
+<p><em>2023-04-11 03:15</em></p>
+<p>研学旅行就是最好的文案</p>
+<blockquote>
+<p>📹 <a target="_blank" rel="noopener" href="https://photovideo.photo.qq.com/1074_0b2efrydqvynqyaoq2zzafsd6laehbaa2f2a.f0.mp4?dis_k=c428fd9ebe330d75dff240c8db82fd5d&dis_t=1789094728&vuin=548568296&owner=MTQ2NzgyMTkzMg==">查看视频</a></p>
+</blockquote>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2023-04-11 03:34：还是我画的坤坤最好看</p>
+<blockquote>
+<p><strong>王汉杰</strong> 2023-04-11 03:36 回复 <strong>@异乡的捕风人</strong>：那必须</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3590309482.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 段红州（3590309482）
+
+<p><em>2023-08-07 03:32</em></p>
+<p>一大早起来拍的真好看，嘿嘿嘿我真厉害</p>
+<p><img src="/images/qzone_other/images/937b438153735e48.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/2b3966ad1e11cdfe.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/4622ba73af9a4fb0.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2023-08-07 03:57：你早上拍落日？</p>
+<blockquote>
+<p><strong>段红州</strong> 2023-08-07 04:28 回复 <strong>@异乡的捕风人</strong>：这tm是日出</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3562468276.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 王鹏（3562468276）
+
+<p><em>2023-08-08 05:01</em></p>
+<p>我偷了李白的酒，写不出那一世不羁，诗仙有愁，世间之愁，能写盛世，能写相思，我却独留一身愁，仙之酒，…</p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2023-08-08 05:19：抽了你？</p>
+<blockquote>
+<p><strong>王鹏</strong> 2023-08-08 07:06 回复 <strong>@异乡的捕风人</strong>：没啊，我就是闲的</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3562468276.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 王鹏（3562468276）
+
+<p><em>2024-02-06 03:55</em></p>
+<p>穷了啊</p>
+<p><img src="/images/qzone_other/images/004796026fe17198.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2024-02-06 04:34：那名字啥意思啊</p>
+<blockquote>
+<p><strong>王鹏</strong> 2024-02-06 07:02 回复 <strong>@异乡的捕风人</strong>：没啥意思</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3561641048.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 徐传轩（3561641048）
+
+<p><em>2024-02-14 13:37</em></p>
+<p>坏了，一个寒假我成面壁者了</p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2024-02-14 13:45：你也看三体？</p>
+<blockquote>
+<p><strong>徐传轩</strong> 2024-02-14 13:46 回复 <strong>@异乡的捕风人</strong>：<img class="qemoji" src="/images/qzone_other/em/e10277.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3940627073.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 双双（3940627073）
+
+<p><em>2024-12-11 04:33</em></p>
+<p>抱歉，根据主人设置的权限，此内容暂不支持查看。</p>
+<blockquote>
+<p>📹 <a target="_blank" rel="noopener" href="https://photovideo.photo.qq.com/1074_0bc3khqj52qboqaiqssyyfttguiet3iadlca.f20.mp4?dis_k=e2d39ac841686455b67d1ed20cd1ed9a&dis_t=1789093574&vuin=548568296&owner=Mzk0MDYyNzA3Mw==">查看视频</a></p>
+</blockquote>
+<blockquote>
+<p>💬 0 条评论</p>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/1686985255.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 宋泽宇（1686985255）
+
+<p><em>2025-01-13 23:52</em></p>
+<p>回河北</p>
+<blockquote>
+<p>💬 2 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2025-01-14 00:38：下学期不来了？</p>
+<blockquote>
+<p><strong>宋泽宇</strong> 2025-01-14 00:39 回复 <strong>@异乡的捕风人</strong>：明年来<br><strong>吴昕豪</strong> 2025-01-14 00:46 回复 <strong>@宋泽宇</strong>：2026？</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3398732815.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 熊荣杰（3398732815）
+
+<p><em>2025-05-18 06:41</em></p>
+<p>两情若是久长时，又岂在朝朝暮暮</p>
+<blockquote>
+<p>📹 <a target="_blank" rel="noopener" href="https://photovideo.photo.qq.com/1074_0b2e6slqnsqd34aiowrkejudd5aea35qhcsa.f0.mp4?dis_k=5855174ca660c1eecc6cc6647dff85d3&dis_t=1789093099&vuin=548568296&owner=MzM5ODczMjgxNQ==">查看视频</a></p>
+</blockquote>
+<blockquote>
+<p>💬 2 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2025-05-18 13:02：能不能在找一个给我</p>
+<blockquote>
+<p><strong>熊荣杰</strong> 2025-05-18 14:03 回复 <strong>@异乡的捕风人</strong>：你比我帅多了，你肯定能找到<br><strong>异乡的捕风人</strong> 2025-05-18 13:01：卧槽，这是你网恋那个？！<br><strong>熊荣杰</strong> 2025-05-18 14:03 回复 <strong>@异乡的捕风人</strong>：不是不是<br><strong>异乡的捕风人</strong> 2025-05-18 14:03 回复 <strong>@熊荣杰</strong>：啊？你这找的快嘛<br><strong>熊荣杰</strong> 2025-05-18 14:04 回复 <strong>@异乡的捕风人</strong>：没有，已经有很多天了</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3244403588.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 余建豪（3244403588）
+
+<p><em>2025-08-26 11:56</em></p>
+<p>是时候给洛中来一场文艺复兴了</p>
+<p><img src="/images/qzone_other/images/a52cb107168266ac.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/905db188daf5be72.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/ce26cbd51dbc72eb.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2025-08-26 12:50：人机</p>
+<blockquote>
+<p><strong>余建豪</strong> 2025-08-26 12:59 回复 <strong>@异乡的捕风人</strong>：受着<br><strong>余建豪</strong> 2025-08-26 13:00 回复 <strong>@异乡的捕风人</strong>：我就应该当初给你在我之间画一个主仆关系，专门标记你是我的奴隶</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3244403588.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 余建豪（3244403588）
+
+<p><em>2025-10-02 12:31</em></p>
+<p>今天晚上能睡个好觉了……</p>
+<p><img src="/images/qzone_other/images/78f05efe89f11189.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/cba145a53b2f281c.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2025-10-02 13:02：主播约吗<img class="qemoji" src="/images/qzone_other/em/e10317.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10317.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10317.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p><strong>余建豪</strong> 2025-10-03 03:33 回复 <strong>@异乡的捕风人</strong>：不约儿童<br><strong>异乡的捕风人</strong> 2025-10-03 03:33 回复 <strong>@余建豪</strong>：我是成人<img class="qemoji" src="/images/qzone_other/em/e10297.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10297.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10297.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/2644901424.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 华子（2644901424）
+
+<p><em>2026-04-20 17:13</em></p>
+<p>赛季第五天于晚上七点二十五分拿下！😌</p>
+<p><img src="/images/qzone_other/images/eb33401092f51cd3.jpg" loading='lazy'></p>
+<p><img src="/images/qzone_other/images/82dc85f4f496d81f.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2026-04-21 11:28：一起玩吗<img class="qemoji" src="/images/qzone_other/em/e10344.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10344.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'></p>
+<blockquote>
+<p><strong>华子</strong> 2026-04-21 11:34 回复 <strong>@异乡的捕风人</strong>：原神是我最不喜欢的<br><strong>异乡的捕风人</strong> 2026-04-21 11:34 回复 <strong>@华子</strong>：三角洲我都进黑屋了，2kd很难打<br><strong>异乡的捕风人</strong> 2026-04-21 11:43 回复 <strong>@华子</strong>：玩梗呢</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/3656520178.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### pubg挂（3656520178）
+
+<p><em>2026-05-27 18:09</em></p>
+<p>地铁老前辈 又是哪个号商😆</p>
+<blockquote>
+<p>📹 <a target="_blank" rel="noopener" href="https://photovideo.photo.qq.com/1074_0b534xzzjwibcmakmpywejvdhziesqlqdbka.f20.mp4?dis_k=7c5d9d4b1f2455096d3e3eb109c20d18&dis_t=1789091731&vuin=548568296&owner=MzY1NjUyMDE3OA==">查看视频</a></p>
+</blockquote>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2026-05-28 01:06：妹控跳枪绷不住了</p>
+<blockquote>
+<p><strong>pubg挂</strong> 2026-05-28 06:46 回复 <strong>@异乡的捕风人</strong>：老前辈😆</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/2030964531.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 邹红林（2030964531）
+
+<p><em>2026-05-30 00:41</em></p>
+<p>我银行卡居然偷偷续了12个月的网盘费😘😘</p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2026-05-30 03:18：12个月不用可惜了</p>
+<blockquote>
+<p><strong>邹红林</strong> 2026-05-30 03:18 回复 <strong>@异乡的捕风人</strong>：两百三😘😘😘😘😘😘😘真给我心疼坏了</p>
+</blockquote>
+</blockquote>
+<hr>
+<img class="qavatar" src="/images/qzone_other/avatar/2780777461.jpg" style="width:2.4em;height:2.4em;border-radius:50%;vertical-align:middle;display:inline-block;margin-right:0.4em" loading='lazy'>
+### 余和东（2780777461）
+
+<p><em>2026-06-05 14:09</em></p>
+<p>要得要得 转自 @假如说我绷住了呢bot,rely_author:1：转发接数学多拿20分</p>
+<p>@A遇缘大吉｜占卜🔮</p>
+<p><img src="/images/qzone_other/images/031629869d584b5f.jpg" loading='lazy'></p>
+<blockquote>
+<p>💬 1 条评论</p>
+</blockquote>
+<blockquote>
+<p><strong>异乡的捕风人</strong> 2026-06-06 13:54：加油</p>
+<blockquote>
+<p><strong>余和东</strong> 2026-06-06 13:56 回复 <strong>@异乡的捕风人</strong>：谢谢<br><strong>异乡的捕风人</strong> 2026-06-06 13:56 回复 <strong>@余和东</strong>：希望你能金榜题名<img class="qemoji" src="/images/qzone_other/em/e10426.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10426.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><img class="qemoji" src="/images/qzone_other/em/e10426.gif" style="width:1.2em;height:1.2em;vertical-align:-0.25em;display:inline-block" loading='lazy'><br><strong>余和东</strong> 2026-06-06 13:58 回复 <strong>@异乡的捕风人</strong>：也希望你能心想事成，事事顺心</p>
+</blockquote>
+</blockquote>
+</article><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/463181114/" title="QQ空间归档"><img class="cover" src="/images/cover3.jpg" onerror="onerror=null;src='/images/404.jpg'" alt="cover of previous post" loading='lazy'><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">QQ空间归档</div></div><div class="info-2"><div class="info-item-1">从创建QQ开始 截止到2026年9月</div></div></div></a><a class="pagination-related" href="/832932061/" title="她"><img class="cover" src="/images/2.6c.jpg" onerror="onerror=null;src='/images/404.jpg'" alt="cover of next post" loading='lazy'><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">她</div></div><div class="info-2"><div class="info-item-1">她朋友发来的一组照片。 看完之后感觉： 嗯，确实挺可爱的。 照片拍得很好，也很符合她平时给人的感觉。 有一点小活泼，也有一点小特别。 刚好博客缺一点生活气息， 就把这几张放上来了。        </div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/butterfly-icon.png" onerror="this.onerror=null;this.src='/images/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">异乡的捕风人</div><div class="author-info-description">专注于分享分享的博客，分享恶搞以及你看不下去打原创内容。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yixiangdebufengren"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yixiangdebufengren" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:fengyigroup@qq.com" target="_blank" title="邮箱"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><p>⚙️ 框架核心：Hexo</p>
+<p>🕹️ 界面设计：Butterfly</p>
+<p>🔮 域名托管：cloudflare</p>
+<p>🎰 部署平台：GitHub Pages</p>
+<p style="text-align:center;">
+<img src="/images/notice.gif" alt="公告GIF" style="width:auto; max-width:100%; height:auto;" loading='lazy'>
+</p>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QQ%E7%A9%BA%E9%97%B4-%C2%B7-%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81"><span class="toc-number">1.</span> <span class="toc-text">QQ空间 · 其他动态</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/463181115/" title="其他人QQ空间归档"><img src="/images/cover2.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="其他人QQ空间归档"/ loading='lazy'></a><div class="content"><a class="title" href="/463181115/" title="其他人QQ空间归档">其他人QQ空间归档</a><time datetime="2026-09-11T07:04:21.000Z" title="发表于 2026-09-11 15:04:21">2026-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/463181114/" title="QQ空间归档"><img src="/images/cover3.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="QQ空间归档"/ loading='lazy'></a><div class="content"><a class="title" href="/463181114/" title="QQ空间归档">QQ空间归档</a><time datetime="2026-09-11T07:04:21.000Z" title="发表于 2026-09-11 15:04:21">2026-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/832932061/" title="她"><img src="/images/2.6c.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="她"/ loading='lazy'></a><div class="content"><a class="title" href="/832932061/" title="她">她</a><time datetime="2026-07-17T14:27:13.000Z" title="发表于 2026-07-17 22:27:13">2026-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/1771530351/" title="自制稳定读取发光NFC卡教程"><img src="/images/5.cover.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="自制稳定读取发光NFC卡教程"/ loading='lazy'></a><div class="content"><a class="title" href="/1771530351/" title="自制稳定读取发光NFC卡教程">自制稳定读取发光NFC卡教程</a><time datetime="2026-01-18T02:43:19.000Z" title="发表于 2026-01-18 10:43:19">2026-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/458901551/" title="我们的歌唱合集"><img src="/images/cover7.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="我们的歌唱合集"/ loading='lazy'></a><div class="content"><a class="title" href="/458901551/" title="我们的歌唱合集">我们的歌唱合集</a><time datetime="2026-01-03T09:16:16.000Z" title="发表于 2026-01-03 17:16:16">2026-01-03</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 异乡的捕风人</span></div><div class="footer_custom_text"><div><a onclick="window.open('https://beian.miit.gov.cn/#/home')">陕ICP备2026018269号</a></div><div>欢迎来到我的博客 | 联系我：548568296@qq.com</div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"meta":["nick","mail"],"emoji":["https://unpkg.com/@waline/emojis@1.4.0/bilibili"]}
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.yixiangren.top',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="/js/newjs.js"></script><script src="/js/comment.js"></script><script src="/js/music-ball.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/comment/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="你想看的都可以搜到🤓☝️" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
