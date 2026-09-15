@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）</title><meta name="author" content="异乡的捕风人"><meta name="copyright" content="异乡的捕风人"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="手机插上OTG U盘或SD卡，根目录自动生成Android、Music、Pictures、DCIM、Movies等文件夹，删了又冒出来？本文分享一个LSPosed模块BlockDirs，从根源上拦截MediaProvider的创建行为，实测ColorOS 16 &#x2F; Android 16有效。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS&#x2F;安卓16实测）">
+<meta property="og:url" content="https://yixiangren.top/463187456/">
+<meta property="og:site_name" content="异乡人博客">
+<meta property="og:description" content="手机插上OTG U盘或SD卡，根目录自动生成Android、Music、Pictures、DCIM、Movies等文件夹，删了又冒出来？本文分享一个LSPosed模块BlockDirs，从根源上拦截MediaProvider的创建行为，实测ColorOS 16 &#x2F; Android 16有效。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yixiangren.top/images/cover3.jpg">
+<meta property="article:published_time" content="2026-09-15T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-15T16:11:48.885Z">
+<meta property="article:author" content="异乡的捕风人">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="LSPosed">
+<meta property="article:tag" content="Xposed">
+<meta property="article:tag" content="搞机">
+<meta property="article:tag" content="模块分享">
+<meta property="article:tag" content="存储">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yixiangren.top/images/cover3.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）",
+  "url": "https://yixiangren.top/463187456/",
+  "image": "https://yixiangren.top/images/cover3.jpg",
+  "datePublished": "2026-09-15T14:00:00.000Z",
+  "dateModified": "2026-09-15T16:11:48.885Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "异乡的捕风人",
+      "url": "https://yixiangren.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://yixiangren.top/463187456/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）',
+  isHighlightShrink: true,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" /><link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/hbe-custom.css"><link rel="stylesheet" href="/css/music-ball.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/images/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 足迹</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/cover3.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.ico" alt="Logo" loading='lazy'><span class="site-name">异乡人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 足迹</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-15T14:00:00.000Z" title="发表于 2026-09-15 22:00:00">2026-09-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-15T16:11:48.885Z" title="更新于 2026-09-16 00:11:48">2026-09-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/463187456/#post-comment"><span class="waline-comment-count" data-path="/463187456/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="插上-U-盘就自动冒出-Android、Music、Pictures-文件夹？一个-LSPosed-模块彻底解决"><a href="#插上-U-盘就自动冒出-Android、Music、Pictures-文件夹？一个-LSPosed-模块彻底解决" class="headerlink" title="插上 U 盘就自动冒出 Android、Music、Pictures 文件夹？一个 LSPosed 模块彻底解决"></a>插上 U 盘就自动冒出 Android、Music、Pictures 文件夹？一个 LSPosed 模块彻底解决</h1><p>先说结论：<strong>如果你也有”手机一插 OTG U 盘 &#x2F; SD 卡，根目录就自动多出一堆 <code>Android</code>、<code>Music</code>、<code>Pictures</code>、<code>DCIM</code>、<code>Movies</code> 文件夹，删了下次还冒出来”的毛病，这篇文章能帮你根治。</strong></p>
+<p>我先把这个痛点的”前世今生”讲清楚，再给你一个真正管用的东西。文末有下载链接，赶时间可以直接滑到底。</p>
+<hr>
+<h2 id="这破事有多烦人，懂的都懂"><a href="#这破事有多烦人，懂的都懂" class="headerlink" title="这破事有多烦人，懂的都懂"></a>这破事有多烦人，懂的都懂</h2><p>想象一下这个场景：</p>
+<p>你高高兴兴插上一个 U 盘，想把它当个干净的移动硬盘用。结果一插上去，系统”贴心”地给你建好了一堆空文件夹，整整齐齐排在那里——<code>Android</code>、<code>Music</code>、<code>Pictures</code>、<code>DCIM</code>、<code>Movies</code>……</p>
+<p>你一脸嫌弃，手动删掉。拔了 U 盘，下次再插——</p>
+<p><strong>又</strong>冒出来了。</p>
+<p>删了又建，建了又删，仿佛在跟你玩打地鼠。这玩意儿在 ColorOS、MIUI、Funtouch 等一众国产系统上尤其明显，网上搜”U盘自动创建文件夹””SD卡自动创建目录”，抱怨一大堆，却<strong>几乎没有一个真正好用的解决办法</strong>。</p>
+<p>为什么这么难解决？因为大部分人想的方向就错了。</p>
+<hr>
+<h2 id="为什么”看着简单”，其实特别难搞"><a href="#为什么”看着简单”，其实特别难搞" class="headerlink" title="为什么”看着简单”，其实特别难搞"></a>为什么”看着简单”，其实特别难搞</h2><p>很多人第一反应是：这还不简单？删掉不就行了？要么就是装个”禁用目录”的工具。</p>
+<p>但你很快会发现，这问题有三个坑：</p>
+<h3 id="坑一：这些文件夹是系统”必须”建的"><a href="#坑一：这些文件夹是系统”必须”建的" class="headerlink" title="坑一：这些文件夹是系统”必须”建的"></a>坑一：这些文件夹是系统”必须”建的</h3><p>创建这些目录的元凶，是 Android 的媒体数据库服务 <code>MediaProvider</code>（包名 <code>com.android.providers.media.module</code>）。它认为「每个存储卷都应该有一套标准的媒体目录结构」，于是在你插上外置存储的那一刻，就”尽职尽责”地帮你初始化好。</p>
+<p>这不是 bug，是<strong>特性</strong>——但显然是个挺讨厌的特性。</p>
+<h3 id="坑二：它不是走普通-Java-代码创建的"><a href="#坑二：它不是走普通-Java-代码创建的" class="headerlink" title="坑二：它不是走普通 Java 代码创建的"></a>坑二：它不是走普通 Java 代码创建的</h3><p>关键来了。这些目录的创建，<strong>根本没过 Java 层的 <code>File.mkdir()</code></strong>，而是 MediaProvider 通过 <strong>native 层 FUSE</strong> 直接调用了系统 C 库的 <code>mkdir</code> &#x2F; <code>mkdirat</code> 函数。</p>
+<p>这意味着：你用常规的 Xposed 模块去 Hook Java 方法，<strong>完全拦不住</strong>。网上很多所谓的”禁止创建目录”模块之所以失效，根子就在这里——它们 Hook 错了层。</p>
+<h3 id="坑三：硬编码目录名-永远有漏网之鱼"><a href="#坑三：硬编码目录名-永远有漏网之鱼" class="headerlink" title="坑三：硬编码目录名 &#x3D; 永远有漏网之鱼"></a>坑三：硬编码目录名 &#x3D; 永远有漏网之鱼</h3><p>就算你 Hook 对了层，如果还是用”黑名单”思路——列一个 <code>&#123;&quot;Android&quot;, &quot;Music&quot;, &quot;Pictures&quot;, &quot;DCIM&quot;, &quot;Movies&quot;&#125;</code> 的清单去拦截，那这清单就永远追不上系统的变化。今天加个 <code>Podcasts</code>，明天加个 <code>Ringtones</code>，后天又冒出个 <code>Alarms</code>，你永远改不完。</p>
+<hr>
+<h2 id="我的解法：从”名字”转向”位置”"><a href="#我的解法：从”名字”转向”位置”" class="headerlink" title="我的解法：从”名字”转向”位置”"></a>我的解法：从”名字”转向”位置”</h2><p>所以我做了一个 LSPosed 模块，叫 <strong>BlockDirs</strong>，思路跟别人正好反过来：</p>
+<blockquote>
+<p><strong>不纠结目录叫什么名字，只看它在哪一层、在什么位置。</strong></p>
+</blockquote>
+<p>它的核心逻辑就一句话：<strong>凡是”外置存储卷根目录下的第一层目录”，一律拦住，不让它创建。</strong> 手机内部的 <code>/storage/emulated</code> 完全不受影响。</p>
+<p>展开说，拦截判定的三个条件：</p>
+<ol>
+<li>路径前缀是 <code>/storage/</code>、<code>/mnt/media_rw/</code>、<code>/mnt/secure/</code> 这三者之一（外置卷的标准挂载点）；</li>
+<li>且排除了 <code>emulated</code>（也就是手机自带存储）；</li>
+<li>且这个目录名里，卷 ID 之后<strong>只有一层</strong>（即”根目录正下方那一层”）。</li>
+</ol>
+<p>命中就返回”成功”，但<strong>实际上不创建</strong>。</p>
+<p>这样带来的好处是：</p>
+<ul>
+<li>✅ <strong>零遗漏</strong>：不依赖目录名，系统爱加啥目录都拦得住，<code>Android</code>、<code>Music</code>、<code>Pictures</code>、<code>DCIM</code>，随便它发明新的，通杀。</li>
+<li>✅ <strong>精准</strong>：只影响真正的可移动存储（OTG &#x2F; SD 卡 &#x2F; U 盘），手机内部文件不受一丁点影响。</li>
+<li>✅ <strong>不会误伤子目录</strong>：只拦第一层，U 盘里 <code>Music/我的歌/xxx.mp3</code> 这种深层路径随便建，不管。</li>
+<li>✅ <strong>不会死循环</strong>：这是很多人担心的——“系统发现目录没了，反复创建怎么办”？答案是<strong>不会</strong>。因为 <code>mkdir</code> 返回”成功”本身就是一个终止信号，系统收到”成功”就以为建好了，不会重试。只有返回”失败”才会反复重试，而我们是”假装成功”，正好卡在这个点上。</li>
+</ul>
+<h3 id="那-native-层怎么-Hook？"><a href="#那-native-层怎么-Hook？" class="headerlink" title="那 native 层怎么 Hook？"></a>那 native 层怎么 Hook？</h3><p>这才是真正的技术活。既然目录是 MediaProvider 用 native 代码调用 libc 的 <code>mkdir</code>&#x2F;<code>mkdirat</code> 建的，那我就直接 <strong>Hook 这两个 native 符号</strong>。</p>
+<p>用的是字节跳动的 <a target="_blank" rel="noopener" href="https://github.com/bytedance/android-inline-hook">ShadowHook</a>（inline hook 库），精准钩住 <code>libc.so</code> 里的 <code>mkdir</code> 和 <code>mkdirat</code>，然后在回调里做上面的”位置判定 + 假装成功”。</p>
+<p>这套方案我在自己的 <strong>ColorOS V16.1（基于 Android 16 &#x2F; SDK 36）</strong> 手机上做了完整的端到端验证：插入 U 盘后，根目录<strong>一个文件夹都没新建</strong>，唯一的 <code>Pictures</code> 还是插盘之前的历史残留。亲测有效。</p>
+<hr>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><ol>
+<li>先确认你手机<strong>已 Root</strong>，并装好了 <strong>LSPosed</strong>（Zygisk 版）；</li>
+<li>下载文末的 <code>app-release.apk</code> 并安装；</li>
+<li>打开 LSPosed，勾选 <strong>BlockDirs</strong> 模块（模块已经内置了作用域推荐，会自动帮你预选好 MediaProvider，不用手搜包名）；</li>
+<li>作用域确认勾上 <strong>系统框架</strong> 和 <strong>com.android.providers.media.module</strong>；</li>
+<li>重启手机（或软重启，让 Zygote 注入生效）；</li>
+<li>插上 OTG U 盘 &#x2F; SD 卡，世界清静了 ✌️。</li>
+</ol>
+<blockquote>
+<p>小提示：如果你之前装过别的 <code>no_otg_media_folders</code> 之类旧模块，建议先卸载，免得两台模块打架，干扰你验证效果。</p>
+</blockquote>
+<hr>
+<h2 id="下载地址-源码"><a href="#下载地址-源码" class="headerlink" title="下载地址 &amp; 源码"></a>下载地址 &amp; 源码</h2><ul>
+<li>🗂️ 项目仓库 &#x2F; 源码 &#x2F; Release APK：<a target="_blank" rel="noopener" href="https://github.com/yixiangdebufengren/top.yixiangren.blockdirs">github.com&#x2F;yixiangdebufengren&#x2F;top.yixiangren.blockdirs</a></li>
+<li>🧩 依赖的 Hook 库：<a target="_blank" rel="noopener" href="https://github.com/bytedance/android-inline-hook">ShadowHook（bytedance&#x2F;android-inline-hook）</a></li>
+</ul>
+<hr>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>这个问题的确很普遍——随便一搜就是一堆人抱怨 U 盘文件夹删不掉，但真正把它”从根上解决”的轮子却少得可怜。我做这个模块的初衷，就是被这个破事逼的：一个 U 盘，非要给我塞几个空文件夹，凭什么？</p>
+<p>如果你也被这个”打地鼠”折磨过，不妨试试 BlockDirs。有用的话，去 GitHub 点个 Star 支持一下；遇到问题也欢迎提 Issue，我看到了会处理。</p>
+<blockquote>
+<p><a href="https://yixiangren.top/">https://yixiangren.top</a></p>
+</blockquote>
+<hr>
+<p><strong>关键词回顾（方便你&#x2F;别人搜到这篇）：</strong><br>OTG U盘自动创建文件夹、SD卡自动创建文件夹、安卓阻止自动创建目录、ColorOS 外置存储、Android 16、LSPosed 模块、Xposed 模块、MediaProvider、外置存储根目录、删除又自动生成文件夹</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/LSPosed/">LSPosed</a><a class="post-meta__tags" href="/tags/Xposed/">Xposed</a><a class="post-meta__tags" href="/tags/%E6%90%9E%E6%9C%BA/">搞机</a><a class="post-meta__tags" href="/tags/%E6%A8%A1%E5%9D%97%E5%88%86%E4%BA%AB/">模块分享</a><a class="post-meta__tags" href="/tags/%E5%AD%98%E5%82%A8/">存储</a></div><div class="post-share"><div class="social-share" data-image="/images/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/463181116/" title="其他人QQ空间归档2"><img class="cover" src="/images/cover2.jpg" onerror="onerror=null;src='/images/404.jpg'" alt="cover of next post" loading='lazy'><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">其他人QQ空间归档2</div></div><div class="info-2"><div class="info-item-1">从创建QQ开始 截止到2026年9月</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/images/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">异乡的捕风人</div><div class="author-info-description">专注于分享分享的博客，分享恶搞以及你看不下去打原创内容。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yixiangdebufengren"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yixiangdebufengren" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:fengyigroup@qq.com" target="_blank" title="邮箱"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><p>⚙️ 框架核心：Hexo</p>
+<p>🕹️ 界面设计：Butterfly</p>
+<p>🔮 域名托管：cloudflare</p>
+<p>🎰 部署平台：GitHub Pages</p>
+<p style="text-align:center;">
+<img src="/images/notice.gif" alt="公告GIF" style="width:auto; max-width:100%; height:auto;" loading='lazy'>
+</p>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%92%E4%B8%8A-U-%E7%9B%98%E5%B0%B1%E8%87%AA%E5%8A%A8%E5%86%92%E5%87%BA-Android%E3%80%81Music%E3%80%81Pictures-%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%9F%E4%B8%80%E4%B8%AA-LSPosed-%E6%A8%A1%E5%9D%97%E5%BD%BB%E5%BA%95%E8%A7%A3%E5%86%B3"><span class="toc-number">1.</span> <span class="toc-text">插上 U 盘就自动冒出 Android、Music、Pictures 文件夹？一个 LSPosed 模块彻底解决</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E7%A0%B4%E4%BA%8B%E6%9C%89%E5%A4%9A%E7%83%A6%E4%BA%BA%EF%BC%8C%E6%87%82%E7%9A%84%E9%83%BD%E6%87%82"><span class="toc-number">1.1.</span> <span class="toc-text">这破事有多烦人，懂的都懂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9D%E7%9C%8B%E7%9D%80%E7%AE%80%E5%8D%95%E2%80%9D%EF%BC%8C%E5%85%B6%E5%AE%9E%E7%89%B9%E5%88%AB%E9%9A%BE%E6%90%9E"><span class="toc-number">1.2.</span> <span class="toc-text">为什么”看着简单”，其实特别难搞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E4%B8%80%EF%BC%9A%E8%BF%99%E4%BA%9B%E6%96%87%E4%BB%B6%E5%A4%B9%E6%98%AF%E7%B3%BB%E7%BB%9F%E2%80%9D%E5%BF%85%E9%A1%BB%E2%80%9D%E5%BB%BA%E7%9A%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">坑一：这些文件夹是系统”必须”建的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E4%BA%8C%EF%BC%9A%E5%AE%83%E4%B8%8D%E6%98%AF%E8%B5%B0%E6%99%AE%E9%80%9A-Java-%E4%BB%A3%E7%A0%81%E5%88%9B%E5%BB%BA%E7%9A%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">坑二：它不是走普通 Java 代码创建的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E4%B8%89%EF%BC%9A%E7%A1%AC%E7%BC%96%E7%A0%81%E7%9B%AE%E5%BD%95%E5%90%8D-%E6%B0%B8%E8%BF%9C%E6%9C%89%E6%BC%8F%E7%BD%91%E4%B9%8B%E9%B1%BC"><span class="toc-number">1.2.3.</span> <span class="toc-text">坑三：硬编码目录名 &#x3D; 永远有漏网之鱼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E8%A7%A3%E6%B3%95%EF%BC%9A%E4%BB%8E%E2%80%9D%E5%90%8D%E5%AD%97%E2%80%9D%E8%BD%AC%E5%90%91%E2%80%9D%E4%BD%8D%E7%BD%AE%E2%80%9D"><span class="toc-number">1.3.</span> <span class="toc-text">我的解法：从”名字”转向”位置”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3-native-%E5%B1%82%E6%80%8E%E4%B9%88-Hook%EF%BC%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">那 native 层怎么 Hook？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">安装与使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80-%E6%BA%90%E7%A0%81"><span class="toc-number">1.5.</span> <span class="toc-text">下载地址 &amp; 源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">1.6.</span> <span class="toc-text">写在最后</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/463187456/" title="插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）"><img src="/images/cover3.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）"/ loading='lazy'></a><div class="content"><a class="title" href="/463187456/" title="插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）">插上U盘就自动冒出Android、Music、Pictures文件夹？一个LSPosed模块彻底解决（ColorOS/安卓16实测）</a><time datetime="2026-09-15T14:00:00.000Z" title="发表于 2026-09-15 22:00:00">2026-09-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/463181116/" title="其他人QQ空间归档2"><img src="/images/cover2.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="其他人QQ空间归档2"/ loading='lazy'></a><div class="content"><a class="title" href="/463181116/" title="其他人QQ空间归档2">其他人QQ空间归档2</a><time datetime="2026-09-14T07:04:21.000Z" title="发表于 2026-09-14 15:04:21">2026-09-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/463181115/" title="其他人QQ空间归档"><img src="/images/cover8.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="其他人QQ空间归档"/ loading='lazy'></a><div class="content"><a class="title" href="/463181115/" title="其他人QQ空间归档">其他人QQ空间归档</a><time datetime="2026-09-11T07:04:21.000Z" title="发表于 2026-09-11 15:04:21">2026-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/463181114/" title="QQ空间归档"><img src="/images/cover5.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="QQ空间归档"/ loading='lazy'></a><div class="content"><a class="title" href="/463181114/" title="QQ空间归档">QQ空间归档</a><time datetime="2026-09-11T07:04:21.000Z" title="发表于 2026-09-11 15:04:21">2026-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/832932061/" title="她"><img src="/images/2/2.6c.jpg" onerror="this.onerror=null;this.src='/images/404.jpg'" alt="她"/ loading='lazy'></a><div class="content"><a class="title" href="/832932061/" title="她">她</a><time datetime="2026-07-17T14:27:13.000Z" title="发表于 2026-07-17 22:27:13">2026-07-17</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 异乡的捕风人</span></div><div class="footer_custom_text"><div><a onclick="window.open('https://beian.miit.gov.cn/#/home')">陕ICP备2026018269号</a></div><div>欢迎来到我的博客 | 联系我：548568296@qq.com</div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"meta":["nick","mail"],"emoji":["https://unpkg.com/@waline/emojis@1.4.0/bilibili"]}
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.yixiangren.top',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="/js/newjs.js"></script><script src="/js/comment.js"></script><script src="/js/music-ball.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/comment/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="你想看的都可以搜到🤓☝️" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
